@@ -1,0 +1,61 @@
+.videoobserve-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, .8fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.videoobserve-player-column {
+    position: sticky;
+    top: 1rem;
+}
+
+.videoobserve-player,
+.videoobserve-player iframe,
+.videoobserve-video,
+.videoobserve-vimeo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 240px;
+    background: #111;
+    border: 0;
+}
+
+.videoobserve-video {
+    height: auto;
+}
+
+.videoobserve-timeline {
+    position: relative;
+    height: 1.5rem;
+    border-radius: .35rem;
+    background: var(--bs-gray-200, #e9ecef);
+    overflow: hidden;
+}
+
+.videoobserve-marker {
+    position: absolute;
+    top: .15rem;
+    width: .65rem;
+    height: 1.2rem;
+    padding: 0;
+    border: 0;
+    border-radius: .25rem;
+    background: currentColor;
+    transform: translateX(-50%);
+    opacity: .75;
+}
+
+.videoobserve-event .list-group-item:last-child {
+    border-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+    .videoobserve-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .videoobserve-player-column {
+        position: static;
+    }
+}
