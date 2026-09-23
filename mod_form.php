@@ -45,7 +45,7 @@ class mod_videoobserve_mod_form extends moodleform_mod {
         $mform->addRule('name', null, 'required', null, 'client');
         $this->standard_intro_elements();
 
-        $mform->addElement('header', 'videosettings', get_string('videoheader', 'videoobserve'));
+        $mform->addElement('html', '<h3>' . get_string('videoheader', 'videoobserve') . '</h3>');
         $mform->addElement('select', 'videosource', get_string('videosource', 'videoobserve'), [
             'upload' => get_string('sourceupload', 'videoobserve'),
             'url' => get_string('sourceurl', 'videoobserve'),
@@ -56,7 +56,6 @@ class mod_videoobserve_mod_form extends moodleform_mod {
 
         $mform->addElement('filemanager', 'video', get_string('videofile', 'videoobserve'), null, [
             'subdirs' => 0,
-            'maxfiles' => 1,
             'accepted_types' => ['video'],
         ]);
         $mform->hideIf('video', 'videosource', 'neq', 'upload');
@@ -67,14 +66,13 @@ class mod_videoobserve_mod_form extends moodleform_mod {
 
         $mform->addElement('filemanager', 'poster', get_string('poster', 'videoobserve'), null, [
             'subdirs' => 0,
-            'maxfiles' => 1,
             'accepted_types' => ['image'],
         ]);
 
         $mform->addElement('advcheckbox', 'resumeplayback', get_string('resumeplayback', 'videoobserve'));
         $mform->setDefault('resumeplayback', 1);
 
-        $mform->addElement('header', 'observationsettings', get_string('observationsettings', 'videoobserve'));
+        $mform->addElement('html', '<h3>' . get_string('observationsettings', 'videoobserve') . '</h3>');
         $mform->addElement('advcheckbox', 'allowintervals', get_string('allowintervals', 'videoobserve'));
         $mform->setDefault('allowintervals', 1);
         $mform->addElement('advcheckbox', 'allowcomments', get_string('allowcomments', 'videoobserve'));
@@ -157,6 +155,15 @@ class mod_videoobserve_mod_form extends moodleform_mod {
             ((int)$data['referencetolerance'] < 0 ||
                 (int)$data['referencetolerance'] > 300)) {
             $errors['referencetolerance'] = get_string('invalidtolerance', 'videoobserve');
+        }
+        foreach (['video', 'poster'] as $field) {
+            $draftid = (int)($data[$field] ?? 0);
+            if ($draftid > 0) {
+                $draftinfo = file_get_draft_area_info($draftid);
+                if ((int)$draftinfo['filecount'] > 1) {
+                    $errors[$field] = get_string('errormaxfiles', 'videoobserve');
+                }
+            }
         }
         return $errors;
     }
