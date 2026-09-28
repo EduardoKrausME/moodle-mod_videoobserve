@@ -74,8 +74,8 @@ class progress_manager {
         foreach ($segments as $segment) {
             $unique += max(0.0, $segment[1] - $segment[0]);
         }
-        $knownDuration = max($duration, $record ? (float)$record->duration : 0.0);
-        $percent = $knownDuration > 0 ? min(100.0, round(($unique / $knownDuration) * 100, 2)) : 0.0;
+        $knownduration = max($duration, $record ? (float)$record->duration : 0.0);
+        $percent = $knownduration > 0 ? min(100.0, round(($unique / $knownduration) * 100, 2)) : 0.0;
         $now = time();
 
         if (!$record) {
@@ -85,7 +85,7 @@ class progress_manager {
                 'timecreated' => $now,
             ];
         }
-        $record->duration = $knownDuration;
+        $record->duration = $knownduration;
         $record->lastposition = $position;
         $record->segments = json_encode($segments);
         $record->uniquewatched = round($unique, 3);
