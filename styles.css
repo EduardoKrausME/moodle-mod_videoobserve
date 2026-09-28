@@ -10,19 +10,29 @@
     top: 1rem;
 }
 
-.videoobserve-player,
-.videoobserve-player iframe,
-.videoobserve-video,
-.videoobserve-vimeo {
+.videoobserve-player {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    min-height: 240px;
     background: #111;
     border: 0;
 }
 
 .videoobserve-video {
+    display: block;
+    width: 100%;
     height: auto;
+    max-width: 100%;
+    background: #111;
+    border: 0;
+}
+
+.videoobserve-player iframe,
+.videoobserve-vimeo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: #111;
+    border: 0;
 }
 
 .videoobserve-timeline {
