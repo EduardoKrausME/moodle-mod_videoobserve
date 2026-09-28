@@ -51,12 +51,19 @@ class restore_videoobserve_activity_task extends restore_activity_task {
         ));
     }
 
-    /** @return restore_decode_content[] */
+    /** 
+     * Function define_decode_contents
+     *
+     * @return restore_decode_content[]
+     */
     public static function define_decode_contents(): array {
         return [new restore_decode_content('videoobserve', ['intro'], 'videoobserve')];
     }
 
-    /** @return restore_decode_rule[] */
+    /** 
+     * Function define_decode_rules
+     *
+     * @return restore_decode_rule[] */
     public static function define_decode_rules(): array {
         return [new restore_decode_rule('VIDEOOBSERVEVIEWBYID', '/mod/videoobserve/view.php?id=$1', 'course_module')];
     }
