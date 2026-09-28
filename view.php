@@ -96,9 +96,9 @@ foreach ($events as $definition) {
 
 $references = [];
 if (!empty($activity->showreference)) {
-    $referenceRecords = $DB->get_records('videoobserve_references', ['videoobserveid' => $activity->id],
+    $referencerecords = $DB->get_records('videoobserve_references', ['videoobserveid' => $activity->id],
         'starttime ASC, id ASC');
-    foreach ($referenceRecords as $reference) {
+    foreach ($referencerecords as $reference) {
         if (!isset($events[$reference->eventtypeid])) {
             continue;
         }
