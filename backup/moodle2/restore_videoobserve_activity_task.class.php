@@ -51,7 +51,7 @@ class restore_videoobserve_activity_task extends restore_activity_task {
         ));
     }
 
-    /** 
+    /**
      * Function define_decode_contents
      *
      * @return restore_decode_content[]
@@ -60,7 +60,7 @@ class restore_videoobserve_activity_task extends restore_activity_task {
         return [new restore_decode_content('videoobserve', ['intro'], 'videoobserve')];
     }
 
-    /** 
+    /**
      * Function define_decode_rules
      *
      * @return restore_decode_rule[] */
